@@ -1,0 +1,15 @@
+<nav class="navbar navbar-light bg-light justify-content-between mt-3">
+  <ul class="nav nav-pills">
+    <li class="nav-item">
+      <a class="nav-link" href="#" (click)="orderPriceLessMore()">Ordenar de menor a mayor</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#" (click)="orderPriceMoreLess()">Ordenar de mayor a menor</a>
+    </li>
+  </ul>
+  <form class="form-inline">
+    <input class="form-control mr-sm-2" type="text" [(ngModel)]="searchText" name="search" placeholder="Search"
+      aria-label="Search">
+    <p>{{searchText}}</p>
+  </form>
+</nav>

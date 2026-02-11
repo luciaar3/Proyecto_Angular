@@ -1,9 +1,9 @@
 export interface IPlato {
-    id?: string,
+    id: string,
     name: string;
     description: string;
     price: number;
     category: string;
     enabled: boolean;
-    image: string;
+    image?: string;
 }

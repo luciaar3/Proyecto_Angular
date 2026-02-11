@@ -1,0 +1,17 @@
+@for(plato of [platos]; track plato.id){
+  @if(plato.enabled){
+    <div class="plato-card">
+      @if(plato.image){
+        <img [src]="plato.image" alt="{{plato.name}}">
+      }
+      @if(!plato.image){
+        <img src="placeholder.jpg" alt="Sin imagen">
+      }
+
+      <h3>{{ plato.name | uppercase }}</h3>
+      <p>{{ plato.description }}</p>
+      <p>Precio: {{ plato.price | currency:'EUR':'symbol':'1.2-2' }}</p>
+      <p>Categoría: {{ plato.category }}</p>
+    </div>
+  }
+}

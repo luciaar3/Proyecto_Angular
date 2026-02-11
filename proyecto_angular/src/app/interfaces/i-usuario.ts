@@ -1,7 +1,7 @@
 export interface IUsuario {
-    id?: string,
+    id: string,
     username: string;
     password: string;
     email: string;
-    role: string;
+    role: 'user' | 'chef';
 }

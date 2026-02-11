@@ -1,15 +1,15 @@
 import { Routes } from '@angular/router';
-import { RestaurantIndex } from './restaurant-index/restaurant-index';
-import { RestaurantList } from './restaurant-list/restaurant-list';
-import { RestaurantLogin } from './restaurant-login/restaurant-login';
-import { RestaurantAdd } from './restaurant-add/restaurant-add';
-import { RestaurantEdit } from './restaurant-edit/restaurant-edit';
+import { RestaurantHome } from './componentes/restaurant-home/restaurant-home';
+import { RestaurantList } from './componentes/restaurant-list/restaurant-list';
+import { RestaurantLogin } from './componentes/restaurant-login/restaurant-login';
+import { RestaurantAdmin } from './componentes/restaurant-admin/restaurant-admin';
 
 export const routes: Routes = [
+    ///rutas geenrales
     {path: 'login', component: RestaurantLogin, title: 'Inicio Sesion' },
-    {path: 'indice', component: RestaurantIndex, title: 'Indice' },
-    {path: 'list', component: RestaurantList, title: 'Lita Restaurante' },
-    {path: 'dish/add', component: RestaurantAdd, title: 'Añadir Plato' },
-    {path: 'dish/edit', component: RestaurantEdit, title: 'Editar Plato' },
+    {path: 'home', component: RestaurantHome, title: 'Home' },
+    {path: 'list', component: RestaurantList, title: 'Menú Restaurante' },
     { path: '', redirectTo: 'indice', pathMatch: 'full' },
+    //rutas para admin
+    { path: 'admin', component: RestaurantAdmin},
 ];

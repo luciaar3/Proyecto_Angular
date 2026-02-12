@@ -1,6 +1,47 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="#">Restaurante Lucia</a>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm px-4">
+  <div class="container-fluid">
+
+    <a class="navbar-brand d-flex align-items-center" routerLink="/home">
+      <img src="assets/img/Restaurant_logo_01.avif"
+           alt="Logo"
+           height="45"
+           class="me-2">
+      Restaurante Lucía
+    </a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarContent">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/home">Inicio</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/list">Carta</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/admin">Gestión</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/login">Iniciar sesión</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link text-danger" (click)="logout()">Cerrar sesión</a>
+        </li>
+
+      </ul>
+    </div>
+
+  </div>
 </nav>
-<div class="container">
-   <router-outlet></router-outlet>
+
+<div class="container mt-4">
+  <router-outlet></router-outlet>
 </div>

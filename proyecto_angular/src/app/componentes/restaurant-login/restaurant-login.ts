@@ -35,7 +35,7 @@ export class RestaurantLogin {
         if (user.role === 'chef') {
           this.router.navigate(['/admin']);
         } else {
-          this.router.navigate(['/menu']);
+          this.router.navigate(['/list']);
         }
       } else {
         this.errorMessage = 'Usuario o contraseña incorrectos';

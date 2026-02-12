@@ -15,7 +15,7 @@ import { Router } from '@angular/router';
   styleUrl: './app.css'
 })
 export class App {
-  constructor(private auth: Auth, private router: Router) {}
+  constructor(public auth: Auth, private router: Router) {}
   logout(){
       this.auth.logout();
       this.router.navigate(['/home']);

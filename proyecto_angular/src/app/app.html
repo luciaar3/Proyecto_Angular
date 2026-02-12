@@ -2,7 +2,7 @@
   <div class="container-fluid">
 
     <a class="navbar-brand d-flex align-items-center" routerLink="/home">
-      <img src="assets/img/Restaurant_logo_01.avif"
+      <img src="/img/Restaurant_logo_01.avif"
            alt="Logo"
            height="45"
            class="me-2">
@@ -23,19 +23,22 @@
         <li class="nav-item">
           <a class="nav-link" routerLink="/list">Carta</a>
         </li>
+        @if(auth.getUser()?.role === 'chef'){
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/admin">Gestión</a>
+          </li>
+        }
 
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/admin">Gestión</a>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/login">Iniciar sesión</a>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link text-danger" (click)="logout()">Cerrar sesión</a>
-        </li>
-
+        @if(auth.getUser()){
+          <li class="nav-item">
+            <a class="nav-link text-danger" (click)="logout()">Cerrar sesión</a>
+          </li>
+        }
+        @if(!auth.getUser()){
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/login">Iniciar sesión</a>
+          </li>
+        }
       </ul>
     </div>
 

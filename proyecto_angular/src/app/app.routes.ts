@@ -9,7 +9,7 @@ export const routes: Routes = [
     {path: 'login', component: RestaurantLogin, title: 'Inicio Sesion' },
     {path: 'home', component: RestaurantHome, title: 'Home' },
     {path: 'list', component: RestaurantList, title: 'Menú Restaurante' },
-    { path: '', redirectTo: 'indice', pathMatch: 'full' },
+    { path: '', redirectTo: 'home', pathMatch: 'full' },
     //rutas para admin
     { path: 'admin', component: RestaurantAdmin},
 ];

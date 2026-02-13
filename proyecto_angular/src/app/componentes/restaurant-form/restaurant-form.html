@@ -1,1 +1,71 @@
-<p>restaurant-form works!</p>
+<h1 class="mb-4">Añadir / Editar Plato</h1>
+
+<form (ngSubmit)="guardarPlato()" class="card p-4 shadow">
+
+  <div class="mb-3">
+    <label class="form-label">Nombre del plato</label>
+    <input type="text"
+           class="form-control"
+           [(ngModel)]="nuevoPlato.name"
+           name="name"
+           required>
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Descripción</label>
+    <textarea class="form-control"
+              [(ngModel)]="nuevoPlato.description"
+              name="description"
+              rows="3"
+              required></textarea>
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Precio (€)</label>
+    <input type="number"
+           class="form-control"
+           [(ngModel)]="nuevoPlato.price"
+           name="price"
+           min="0"
+           step="0.01"
+           required>
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Categoría</label>
+    <input type="text"
+           class="form-control"
+           [(ngModel)]="nuevoPlato.category"
+           name="category"
+           required>
+  </div>
+
+  <div class="form-check mb-3">
+    <input class="form-check-input"
+           type="checkbox"
+           [(ngModel)]="nuevoPlato.enabled"
+           name="enabled">
+    <label class="form-check-label">
+      Plato visible en el menú
+    </label>
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Imagen (URL)</label>
+    <input type="text"
+           class="form-control"
+           [(ngModel)]="nuevoPlato.image"
+           name="image">
+  </div>
+
+  @if(nuevoPlato.image){
+    <img [src]="nuevoPlato.image"
+         class="img-thumbnail my-3"
+         style="max-height:200px">
+  }
+
+  <button type="submit" class="btn btn-primary">
+    Guardar Plato
+  </button>
+
+</form>

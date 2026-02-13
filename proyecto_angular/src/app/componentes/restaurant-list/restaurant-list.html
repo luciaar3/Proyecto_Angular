@@ -1,10 +1,30 @@
-<nav class="navbar navbar-light bg-light justify-content-between mt-3">
+<nav class="navbar navbar-light bg-light justify-content-between mt-3 p-3 rounded shadow-sm">
   <ul class="nav nav-pills">
     <li class="nav-item">
-      <a class="nav-link" href="#" (click)="orderPriceLessMore()">Ordenar de menor a mayor</a>
+      <button class="nav-link btn btn-link"
+              (click)="orderPriceLessMore()">
+        Ordenar de menor a mayor
+      </button>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="#" (click)="orderPriceMoreLess()">Ordenar de mayor a menor</a>
+      <button class="nav-link btn btn-link"
+              (click)="orderPriceMoreLess()">
+        Ordenar de mayor a menor
+      </button>
     </li>
   </ul>
 </nav>
+
+<div class="row">
+  @if(platos.lenght > 0){
+  @for (plato of platos; track plato.id) {
+    <div class="col-6 mt-4">
+      <restaurant-item 
+        [platos]="plato">
+      </restaurant-item>
+    </div>
+  }
+} @else{
+  No hay platos
+}
+</div>

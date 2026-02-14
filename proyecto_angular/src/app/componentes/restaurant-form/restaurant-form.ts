@@ -26,9 +26,8 @@ export class RestaurantForm {
   constructor(private http: HttpClient, private router: Router) {}
 
   guardarPlato() {
-    this.http.post('http://localhost:3000/dishes', this.nuevoPlato)
-      .subscribe(() => {
-        this.router.navigate(['/admin']);
-      });
+    const { id, ...platoSinId } = this.nuevoPlato; // elimina id vacío
+    this.http.post('http://localhost:3000/dishes', platoSinId)
+      .subscribe(() => this.router.navigate(['/admin']));
   }
 }

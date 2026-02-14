@@ -1,1 +1,30 @@
-<p>restaurant-admin works!</p>
+<div class="container mt-4">
+
+  <h1 class="mb-4">Gestión de Platos</h1>
+
+  <div class="row mb-3">
+    <div class="col">
+      <button class="btn btn-success" routerLink="/admin/create">Añadir nuevo plato</button>
+    </div>
+  </div>
+
+  <div class="row">
+    @if (platos$ | async; as platos) {
+      @for (plato of platos; track plato.id) {
+        <div class="col-6 col-md-4 col-lg-3 mb-4">
+          <restaurant-item [plato]="plato"></restaurant-item>
+          <div class="d-flex justify-content-between mt-2">
+            <button class="btn btn-sm btn-warning" (click)="toggleEnabled(plato)">
+              @if(plato.enabled){Deshabilitar}@else{Habilitar}
+            </button>
+            <button class="btn btn-sm btn-danger" (click)="eliminar(plato.id)">Eliminar</button>
+          </div>
+        </div>
+      }
+    } @else {
+      <div class="col-12">
+        <h3>No hay platos disponibles</h3>
+      </div>
+    }
+  </div>
+</div>

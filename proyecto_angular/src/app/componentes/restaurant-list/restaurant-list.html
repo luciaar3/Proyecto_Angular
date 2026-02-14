@@ -3,28 +3,95 @@
     <li class="nav-item">
       <button class="nav-link btn btn-link"
               (click)="orderPriceLessMore()">
-        Ordenar de menor a mayor
+        Precio: ASCENDENTE
       </button>
     </li>
     <li class="nav-item">
       <button class="nav-link btn btn-link"
               (click)="orderPriceMoreLess()">
-        Ordenar de mayor a menor
+        Precio: DESCENDENTE
       </button>
     </li>
   </ul>
+
+  <div class="mb-3">
+    <button (click)="filtrarPorCategoria('todas')" class="btn btn-outline-dark me-2">
+      Todas
+    </button>
+
+    <button (click)="filtrarPorCategoria('entrantes')" class="btn btn-outline-dark me-2">
+      Entrantes
+    </button>
+
+    <button (click)="filtrarPorCategoria('principales')" class="btn btn-outline-dark me-2">
+      Principales
+    </button>
+
+    <button (click)="filtrarPorCategoria('postres')" class="btn btn-outline-dark me-2">
+      Postres
+    </button>
+
+    <button (click)="filtrarPorCategoria('bebidas')" class="btn btn-outline-dark">
+      Bebidas
+    </button>
+  </div>
 </nav>
 
 <div class="row">
-  @if(platos.length > 0){
-  @for (plato of platos; track plato.id) {
-    <div class="col-6 mt-4">
-      <restaurant-item 
-        [platos]="plato">
-      </restaurant-item>
-    </div>
-  }
-} @else{
-  No hay platos
-}
+    @if (platos$ | async; as platos) {
+      @for (plato of platos; track plato.id) {
+        <div class="col-6 col-md-4 col-lg-3 mb-4">
+          <restaurant-item [plato]="plato"></restaurant-item>
+        </div>
+      }
+    } @else {
+      <div class="col-12">
+        <h3>No hay platos disponibles</h3>
+      </div>
+    }
+  </div>
+
+  <div class="usability-widget dropdown mb-3">
+  <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+    Opciones de accesibilidad
+  </button>
+  <ul class="dropdown-menu p-3">
+    
+    <li>
+      <h6>Texto</h6>
+      <button class="btn btn-outline-dark btn-sm me-2" (click)="activarTextoGrande()">
+        Texto grande
+      </button>
+      <button class="btn btn-outline-dark btn-sm" (click)="activarAlturaLineas()">
+        Altura de líneas
+      </button>
+    </li>
+    <hr>
+    <li>
+      <h6>Visual</h6>
+      <button class="btn btn-outline-dark btn-sm me-2" (click)="activarAltoContraste()">
+        Alto contraste
+      </button>
+      <button class="btn btn-outline-dark btn-sm" (click)="activarEscalaGrises()">
+        Escala de grises
+      </button>
+    </li>
+    <hr>
+    <li>
+      <h6>Orientación</h6>
+      <button class="btn btn-outline-dark btn-sm me-2" (click)="resaltarEnlaces()">
+        Resaltar enlaces
+      </button>
+      <button class="btn btn-outline-dark btn-sm" (click)="enfoqueContorno()">
+        Enfoque contorno
+      </button>
+    </li>
+    <hr>
+    <li>
+      <button class="btn btn-danger btn-sm w-100" (click)="resetUsabilidad()">
+        Reset
+      </button>
+    </li>
+    
+  </ul>
 </div>

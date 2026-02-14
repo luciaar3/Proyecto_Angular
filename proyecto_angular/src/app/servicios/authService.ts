@@ -18,7 +18,4 @@ export class Auth {
   logout() {
     this.currentUser = null;
   }
-
-  
-
 }

@@ -11,5 +11,5 @@ import { UpperCasePipe } from '@angular/common';
 })
 export class RestaurantItem {
 
-  @Input() platos!: IPlato;
+  @Input() plato!: IPlato;
 }

@@ -1,5 +1,5 @@
-@for(plato of [plato]; track plato.id){
-  @if(plato.enabled){
+
+
     <div class="plato-card">
       @if(plato.image){
         <img [src]="plato.image" alt="{{plato.name}}">
@@ -13,5 +13,3 @@
       <p>Precio: {{ plato.price | currency:'EUR':'symbol':'1.2-2' }}</p>
       <p>Categoría: {{ plato.category }}</p>
     </div>
-  }
-}

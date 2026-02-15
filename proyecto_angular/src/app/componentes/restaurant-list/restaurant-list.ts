@@ -4,11 +4,12 @@ import { RestaurantItem } from '../restaurant-item/restaurant-item';
 import { IPlato } from '../../interfaces/i-plato';
 import { HttpClient } from '@angular/common/http';
 import { map, Observable } from 'rxjs';
-import { AsyncPipe } from '@angular/common';
+import { AsyncPipe, NgClass } from '@angular/common';
+
 
 @Component({
   selector: 'app-restaurant-list',
-  imports: [RouterLink, RestaurantItem, AsyncPipe],
+  imports: [RouterLink, RestaurantItem, AsyncPipe, NgClass],
   templateUrl: './restaurant-list.html',
   styleUrl: './restaurant-list.css',
 })
@@ -46,20 +47,29 @@ filtrarPorCategoria(categoria: string) {
     this.platos$ = this.http.get<IPlato[]>('http://localhost:3000/dishes')
       .pipe(
         map(platos =>
-          platos.filter(p => p.enabled && (!categoria || p.category === categoria))
+          platos.filter(p => 
+            p.enabled && 
+            (categoria === 'todas' || p.category === categoria)
+          )
         )
       );
 
 }
 
-  textoGrande = false;
+  // --- VARIABLES DE USABILIDAD ---
+  nivelTexto: number = 0; // 0:Normal,1: Grande,2: Muy Grande
+  
   alturaLineas = false;
   contraste = false;
   gris = false;
   enlaces = false;
   enfoque = false;
+  
+  // Recibe el nivel
+  cambiarTamanoTexto(nivel: number) {
+    this.nivelTexto = nivel;
+  }
 
-  activarTextoGrande() { this.textoGrande = !this.textoGrande; }
   activarAlturaLineas() { this.alturaLineas = !this.alturaLineas; }
   activarAltoContraste() { this.contraste = !this.contraste; }
   activarEscalaGrises() { this.gris = !this.gris; }
@@ -67,7 +77,7 @@ filtrarPorCategoria(categoria: string) {
   enfoqueContorno() { this.enfoque = !this.enfoque; }
 
   resetUsabilidad() {
-    this.textoGrande = false;
+    this.nivelTexto = 0; // Vuelve a normal
     this.alturaLineas = false;
     this.contraste = false;
     this.gris = false;

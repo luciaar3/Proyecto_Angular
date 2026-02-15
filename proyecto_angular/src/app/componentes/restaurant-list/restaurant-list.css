@@ -1,0 +1,84 @@
+/* Esto hace que al cambiar de modo sea suave y no un salto brusco*/
+.transition-container,
+.transition-container * {
+    transition: all 0.3s ease;
+}
+/* NIVEL 1: TEXTO GRANDE (A+) */
+.texto-grande ::ng-deep * {
+    font-size: 1.2rem !important; /* Aumenta un poco la base */
+}
+.texto-grande ::ng-deep h1,
+.texto-grande ::ng-deep h2,
+.texto-grande ::ng-deep h3 {
+    font-size: 1.5rem !important; /* Títulos más grandes*/
+}
+
+/* NIVEL 2: TEXTO MUY GRANDE (A++) */
+.texto-muy-grande ::ng-deep * {
+    font-size: 1.4rem !important; /*Aumenta mucho la base */
+}
+.texto-muy-grande ::ng-deep h1,
+.texto-muy-grande ::ng-deep h2,
+.texto-muy-grande ::ng-deep h3 {
+    font-size: 2rem !important; /*Títulos gigantes */
+}
+.texto-muy-grande ::ng-deep .btn {
+    font-size: 1.3rem !important; /* Botones más fáciles de pulsar*/
+    padding: 10px 20px !important;
+}
+
+.altura-lineas ::ng-deep p,
+.altura-lineas ::ng-deep li,
+.altura-lineas ::ng-deep span,
+.altura-lineas ::ng-deep div {
+    line-height: 2.5 !important; /* Mucho espacio entre renglones */
+    letter-spacing: 0.05em;      /* Separa un poco las letra*/
+}
+
+.alto-contraste {
+    background-color: #000000 !important;
+    color: #ffff00 !important;
+}
+
+/*Forzamos el estilo dentro de tarjetas, navbar y menús */
+.alto-contraste ::ng-deep .card,
+.alto-contraste ::ng-deep .plato-card,
+.alto-contraste ::ng-deep .navbar,
+.alto-contraste ::ng-deep .dropdown-menu,
+.alto-contraste ::ng-deep button,
+.alto-contraste ::ng-deep input {
+    background-color: #000000 !important;
+    color: #ffff00 !important;
+    border: 2px solid #ffff00 !important;
+}
+
+/* Corregimos textos que Bootstrap pone en gris o negro por defecto */
+.alto-contraste ::ng-deep .text-muted,
+.alto-contraste ::ng-deep .text-dark,
+.alto-contraste ::ng-deep a {
+    color: #ffff00 !important;
+}
+
+.escala-grises {
+    filter: grayscale(100%) !important;
+}
+
+/*RESALTAR ENLACES: Fond amarillo chillón y subrayado */
+.resaltar-enlaces ::ng-deep a,
+.resaltar-enlaces ::ng-deep button.btn-link,
+.resaltar-enlaces ::ng-deep .btn,
+.resaltar-enlaces ::ng-deep .nav-link {
+    background-color: #ffeb3b !important;
+    color: #000000 !important;
+    text-decoration: underline !important;
+    font-weight: bold !important;
+    border: 3px solid #000 !important;
+}
+
+/* ENFOQUE CONTORNO:Para navegar con Tab*/
+.enfoque-contorno ::ng-deep *:focus {
+    outline: 5px solid #ff0000 !important; /*Borde rojo muy grueso */
+    outline-offset: 3px;
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.8) !important;
+    z-index: 9999;
+}

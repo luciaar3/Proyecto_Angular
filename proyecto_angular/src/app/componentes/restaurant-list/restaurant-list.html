@@ -1,43 +1,120 @@
-<nav class="navbar navbar-light bg-light justify-content-between mt-3 p-3 rounded shadow-sm">
-  <ul class="nav nav-pills">
-    <li class="nav-item">
-      <button class="nav-link btn btn-link"
-              (click)="orderPriceLessMore()">
-        Precio: ASCENDENTE
+<div class="container-fluid transition-container" 
+     [ngClass]="{
+       'texto-grande': nivelTexto === 1,
+       'texto-muy-grande': nivelTexto === 2,
+       'altura-lineas': alturaLineas,
+       'alto-contraste': contraste,
+       'escala-grises': gris,
+       'resaltar-enlaces': enlaces,
+       'enfoque-contorno': enfoque
+     }">
+
+  <div class="d-flex justify-content-end mb-2 mt-2">
+    <div class="dropdown">
+      <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        Opciones de Accesibilidad
       </button>
-    </li>
-    <li class="nav-item">
-      <button class="nav-link btn btn-link"
-              (click)="orderPriceMoreLess()">
-        Precio: DESCENDENTE
-      </button>
-    </li>
-  </ul>
+      <ul class="dropdown-menu p-3 shadow" style="min-width: 260px;">
+        
+        <li>
+          <h6 class="dropdown-header">Tamaño del Texto</h6>
+          <div class="btn-group w-100 mb-2" role="group" aria-label="Tamaño de texto">
+            <button class="btn btn-outline-dark btn-sm" 
+                    [class.active]="nivelTexto === 0" 
+                    (click)="cambiarTamanoTexto(0)"
+                    title="Tamaño Normal">
+              A
+            </button>
+            <button class="btn btn-outline-dark btn-sm" 
+                    [class.active]="nivelTexto === 1" 
+                    (click)="cambiarTamanoTexto(1)"
+                    title="Grande">
+              A+
+            </button>
+            <button class="btn btn-outline-dark btn-sm" 
+                    [class.active]="nivelTexto === 2" 
+                    (click)="cambiarTamanoTexto(2)"
+                    title="Muy Grande">
+              A++
+            </button>
+          </div>
 
-  <div class="mb-3">
-    <button (click)="filtrarPorCategoria('todas')" class="btn btn-outline-dark me-2">
-      Todas
-    </button>
+          <button class="btn btn-outline-dark btn-sm w-100 mb-2" 
+                  [class.active]="alturaLineas" 
+                  (click)="activarAlturaLineas()">
+            Altura de líneas
+          </button>
+        </li>
+        <li><hr class="dropdown-divider"></li>
 
-    <button (click)="filtrarPorCategoria('entrantes')" class="btn btn-outline-dark me-2">
-      Entrantes
-    </button>
+        <li>
+          <h6 class="dropdown-header">Visual</h6>
+          <div class="d-flex gap-2 mb-2">
+            <button class="btn btn-outline-dark btn-sm flex-fill" 
+                    [class.active]="contraste" 
+                    (click)="activarAltoContraste()">
+              Contraste
+            </button>
+            <button class="btn btn-outline-dark btn-sm flex-fill" 
+                    [class.active]="gris" 
+                    (click)="activarEscalaGrises()">
+              Grises
+            </button>
+          </div>
+        </li>
+        <li><hr class="dropdown-divider"></li>
 
-    <button (click)="filtrarPorCategoria('principales')" class="btn btn-outline-dark me-2">
-      Principales
-    </button>
+        <li>
+          <h6 class="dropdown-header">Orientación</h6>
+          <div class="d-flex gap-2 mb-2">
+            <button class="btn btn-outline-dark btn-sm flex-fill" 
+                    [class.active]="enlaces" 
+                    (click)="resaltarEnlaces()">
+              Enlaces
+            </button>
+            <button class="btn btn-outline-dark btn-sm flex-fill" 
+                    [class.active]="enfoque" 
+                    (click)="enfoqueContorno()">
+              Enfoque
+            </button>
+          </div>
+        </li>
+        <li><hr class="dropdown-divider"></li>
 
-    <button (click)="filtrarPorCategoria('postres')" class="btn btn-outline-dark me-2">
-      Postres
-    </button>
-
-    <button (click)="filtrarPorCategoria('bebidas')" class="btn btn-outline-dark">
-      Bebidas
-    </button>
+        <li>
+          <button class="btn btn-danger btn-sm w-100" (click)="resetUsabilidad()">
+            ↺ Restablecer todo
+          </button>
+        </li>
+        
+      </ul>
+    </div>
   </div>
-</nav>
 
-<div class="row">
+  <nav class="navbar navbar-light bg-light justify-content-between p-3 rounded shadow-sm mb-4">
+    <ul class="nav nav-pills">
+      <li class="nav-item">
+        <button class="nav-link btn btn-link" (click)="orderPriceLessMore()">
+          Precio: ASCENDENTE
+        </button>
+      </li>
+      <li class="nav-item">
+        <button class="nav-link btn btn-link" (click)="orderPriceMoreLess()">
+          Precio: DESCENDENTE
+        </button>
+      </li>
+    </ul>
+
+    <div class="mb-3 mb-md-0">
+      <button (click)="filtrarPorCategoria('todas')" class="btn btn-outline-dark me-2">Todas</button>
+      <button (click)="filtrarPorCategoria('entrantes')" class="btn btn-outline-dark me-2">Entrantes</button>
+      <button (click)="filtrarPorCategoria('principales')" class="btn btn-outline-dark me-2">Principales</button>
+      <button (click)="filtrarPorCategoria('postres')" class="btn btn-outline-dark me-2">Postres</button>
+      <button (click)="filtrarPorCategoria('bebidas')" class="btn btn-outline-dark">Bebidas</button>
+    </div>
+  </nav>
+
+  <div class="row">
     @if (platos$ | async; as platos) {
       @for (plato of platos; track plato.id) {
         <div class="col-6 col-md-4 col-lg-3 mb-4">
@@ -45,53 +122,10 @@
         </div>
       }
     } @else {
-      <div class="col-12">
+      <div class="col-12 text-center py-5">
         <h3>No hay platos disponibles</h3>
       </div>
     }
   </div>
 
-  <div class="usability-widget dropdown mb-3">
-  <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
-    Opciones de accesibilidad
-  </button>
-  <ul class="dropdown-menu p-3">
-    
-    <li>
-      <h6>Texto</h6>
-      <button class="btn btn-outline-dark btn-sm me-2" (click)="activarTextoGrande()">
-        Texto grande
-      </button>
-      <button class="btn btn-outline-dark btn-sm" (click)="activarAlturaLineas()">
-        Altura de líneas
-      </button>
-    </li>
-    <hr>
-    <li>
-      <h6>Visual</h6>
-      <button class="btn btn-outline-dark btn-sm me-2" (click)="activarAltoContraste()">
-        Alto contraste
-      </button>
-      <button class="btn btn-outline-dark btn-sm" (click)="activarEscalaGrises()">
-        Escala de grises
-      </button>
-    </li>
-    <hr>
-    <li>
-      <h6>Orientación</h6>
-      <button class="btn btn-outline-dark btn-sm me-2" (click)="resaltarEnlaces()">
-        Resaltar enlaces
-      </button>
-      <button class="btn btn-outline-dark btn-sm" (click)="enfoqueContorno()">
-        Enfoque contorno
-      </button>
-    </li>
-    <hr>
-    <li>
-      <button class="btn btn-danger btn-sm w-100" (click)="resetUsabilidad()">
-        Reset
-      </button>
-    </li>
-    
-  </ul>
 </div>

@@ -25,9 +25,13 @@ export class RestaurantLogin {
   errorMessage: string = '';
 
  login() {
+
+  console.log('Buscando:', this.username, this.password);
+    
     this.http.get<IUsuario[]>(
       `http://localhost:3000/users?username=${this.username}&password=${this.password}`
     ).subscribe(users => {
+      console.log('El servidor ha encontrado:', users);
       if (users.length === 1) {
         const user = users[0];
         this.auth.login(user);
